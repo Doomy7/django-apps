@@ -13,7 +13,7 @@ def index(request):
 
 def getWeather(city):
     #build the url
-    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&appid={placeholderforapikey}'.format(city)
+    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&appid=c21807537671ed836a423612bca624e8'.format(city)
     #query result
     query = requests.get(url).json()
     #get the city_name, city_temp, temp description and then icon name pair for weather description
@@ -28,7 +28,7 @@ def addCity(request):
     city = request.POST.get('city')
     #create the object and try to get weather info
     new_item = savedLocations(location=city)
-    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&appid={placeholderforapikey}'.format(city)
+    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&appid=c21807537671ed836a423612bca624e8'.format(city)
     query = requests.get(url).json()
     #if query returns message then an error occured
     if('message' in query.keys() and query['message'] == 'city not found'):

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--Two buttons for app entry-->
+    <div class="card text-center">
+        <div class="card-body">
+            <h1>Create CV</h1>
+            <form action="addCV/" method="POST">
+                {% csrf_token %}
+                <label for="fname">First Name</label>
+                <input type="text" name="fname">
+                <br>
+                <label for="sname">SurName</label>
+                <input type="text" name="sname">
+                <br>
+                <label for="phone">Phone Number</label>
+                <input type="number" name="phone">
+                <br>
+                <label for="edu">Education</label>
+                <select name="edu">
+                    <option value="High School">High School</option>
+                    <option value="Graduate">Graduate</option>
+                    <option valut="Post Graduate">Post Graduate</option>
+                </select>
+                <br>
+                <h4>Languages</h4>
+                <input type="checkbox" id="eng" name="eng" value="English">
+                <label for="eng">English</label><br>
+                <input type="checkbox" id="jap" name="jap" value="Japanese">
+                <label for="eng">Japanese</label><br>
+                <input type="checkbox" id="gre" name="gre" value="Greek">
+                <label for="eng">Greek</label><br>
+                <h4>Details</h4>
+                <textarea name="desc" value="{{text}}"></textarea>
+                <br>
+                <input type="submit" name="submit" value="Submit">
+
+
+            </form>
+            <a class="btn btn-dark" href="{% url 'cv:index' %}">
+                Back
+            </a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--Two buttons for app entry-->
+    <div class="card text-center">
+        <div class="card-body">
+            <h1>CVs App</h1>
+            <a class="btn btn-dark" href="{% url 'cv:viewCVs' %}">View CVs</a>
+            <a class="btn btn-dark" href="{%url 'cv:newCV' %}"> Create CV</a>
+            <a class="btn btn-dark" href="{% url 'index' %}">
+                Back to My Apps
+            </a>
+        </div>
+    </div>
+{% endblock %}

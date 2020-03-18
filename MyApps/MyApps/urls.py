@@ -21,4 +21,5 @@ urlpatterns = [
     path('', include('pages.urls')),
     path('weather/', include('weather.urls')),
     path('toDoSticker/', include('toDoSticker.urls')),
+    path('cv/', include('cv.urls'))
 ]
