@@ -1,7 +1,7 @@
 from django.urls import path
 
 from . import views
-
+#to Do app_name and urls
 app_name='To_Do_stickers'
 
 urlpatterns = [

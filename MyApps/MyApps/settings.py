@@ -29,7 +29,7 @@ ALLOWED_HOSTS = []
 
 
 # Application definition
-
+# specify installed apps
 INSTALLED_APPS = [
     'toDoSticker.apps.TodostickerConfig',
     'weather.apps.WeatherConfig',

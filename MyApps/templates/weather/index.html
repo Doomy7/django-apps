@@ -26,7 +26,7 @@
                     <form action="add/" method="POST">
 
                         <div class="field has-addons">
-
+<!-- complete the form to add a new location (if it exists)-->
                             <div class="control is-expanded">
                                 {% csrf_token %}
                                 <input class="input" type="text" name='city' value="{{city}}" placeholder="City Name" required>
@@ -49,18 +49,22 @@
         <div class="container">
             <div class="columns">
                 <div class="column is-offset-4 is-4">
+<!--    If locations exist in database -->
                     {% if locations %}
+<!--    For every location   render info-->
                         {% for location in locations %}
                             <div class="box">
                                 <article class="media">
                                     <div class="media-left">
                                         <figure class="image is-50x50">
+<!--    Weather icon name is given from query                                            -->
                                             <img src="http://openweathermap.org/img/w/{{location.icon}}.png" alt="Image">
                                         </figure>
                                     </div>
                                     <div class="media-content">
                                         <div class="content">
                                             <p>
+<!--   With cityname,citytemp and weather desc                                              -->
                                                 <span class="title">{{ location.city }}</span>
                                                 <br>
                                                 <span class="subtitle">{{ location.temp }}°C</span>
@@ -69,12 +73,14 @@
                                         </div>
                                     </div>
                                 </article>
+<!-- We can also delete saved locations                               -->
                                 <form action="delete/{{location.id}}" method="POST">
                                     {% csrf_token %}
                                     <input type="submit" name="submit" value="delete">
                                 </form>
                             </div>
                         {% endfor %}
+<!-- If database empty                    -->
                     {% else %}
                     <h2>Please add a location ! </h2>
                     {% endif %}

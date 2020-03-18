@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
-
+<!--implement block content-->
 {% block content %}
 
     <div class="card text-center">
         <div class="card-body">
             <h1>TO DO REMINDERS</h1>
-
+<!--if to list exists -->
             {% if to_do_list %}
             <h1>Tasks for the day</h1>
-
+<!--print everyitem while specifing deleted button for specific task-->
             {% for task in to_do_list %}
             <form action="delete/{{task.id}}/" method="POST">
                 {% csrf_token %}
@@ -16,10 +16,11 @@
             </form>
             {% endfor %}
         <br>
+<!-- If tasks are done, relax-->
     {% else %}
     <h1>No more tasks. Relax !</h1>
     {% endif %}
-
+<!-- For adding new task write its name and specify the deadline -->
             <form action="add/" method="POST">
                 {% csrf_token %}
                 <input type="text" placeholder="Task" name="task" required>
