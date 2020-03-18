@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    What's the weather like?
+                </h1>
+            </div>
+        </div>
+    </section>
+<!--  WEATHER SEARCH   -->
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    <form action="add/" method="POST">
+
+                        <div class="field has-addons">
+
+                            <div class="control is-expanded">
+                                {% csrf_token %}
+                                <input class="input" type="text" name='city' value="{{city}}" placeholder="City Name" required>
+                            </div>
+                            <div class="control">
+                                <input type="submit" class="button is-info" value="Add City"/>
+                            </div>
+                        </div>
+                        <h2>{{error_message}}</h2>
+
+                    </form>
+                    <br>
+                    <a class="btn btn-dark" href="{% url 'index' %}">Back to My Apps</a>
+                </div>
+            </div>
+        </div>
+    </section>
+<!--    WEATHER ICON -->
+    <section class="section">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-offset-4 is-4">
+                    {% if locations %}
+                        {% for location in locations %}
+                            <div class="box">
+                                <article class="media">
+                                    <div class="media-left">
+                                        <figure class="image is-50x50">
+                                            <img src="http://openweathermap.org/img/w/{{location.icon}}.png" alt="Image">
+                                        </figure>
+                                    </div>
+                                    <div class="media-content">
+                                        <div class="content">
+                                            <p>
+                                                <span class="title">{{ location.city }}</span>
+                                                <br>
+                                                <span class="subtitle">{{ location.temp }}°C</span>
+                                                <br> {{ location.desc }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </article>
+                                <form action="delete/{{location.id}}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="submit" name="submit" value="delete">
+                                </form>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                    <h2>Please add a location ! </h2>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+    </footer>
+</body>
+</html>
+

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="card text-center">
+        <div class="card-body">
+            <h1>TO DO REMINDERS</h1>
+
+            {% if to_do_list %}
+            <h1>Tasks for the day</h1>
+
+            {% for task in to_do_list %}
+            <form action="delete/{{task.id}}/" method="POST">
+                {% csrf_token %}
+                <li>{{task.listItem}} {{task.time_limit}} <input type="submit" name="choice" value="Done!"></li>
+            </form>
+            {% endfor %}
+        <br>
+    {% else %}
+    <h1>No more tasks. Relax !</h1>
+    {% endif %}
+
+            <form action="add/" method="POST">
+                {% csrf_token %}
+                <input type="text" placeholder="Task" name="task" required>
+                <input type="time" name="time" >
+                <input type="submit" value="New task">
+            </form>
+            <br>
+            <a class="btn btn-dark" href="{% url 'index' %}">
+                Back to My Apps
+            </a>
+        </div>
+    </div>
+{% endblock %}
