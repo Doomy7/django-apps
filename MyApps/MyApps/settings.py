@@ -79,6 +79,7 @@ WSGI_APPLICATION = 'MyApps.wsgi.application'
 
 DATABASES = {
     'default': {},
+    # mysql option as localized for different machine
     'mysql': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'djangodatabase',
@@ -93,7 +94,9 @@ DATABASES = {
     }
 }
 
+#specify router path for import
 DATABASE_ROUTERS = ['MyApps.dbrouters.DBRouter',]
+
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
