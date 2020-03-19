@@ -25,7 +25,7 @@ SECRET_KEY = 'ohwr_7nb-gtl5+uazo^lsjd%_s=ta6o#!e&*zp1l*9e-&xt8%w'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['doomy7.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
@@ -76,17 +76,10 @@ WSGI_APPLICATION = 'MyApps.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-'''
 
 DATABASES = {
-    'default': {
+    'default': {},
+    'mysql': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'djangodatabase',
         'USER': 'dbadmin',
@@ -100,7 +93,7 @@ DATABASES = {
     }
 }
 
-
+DATABASE_ROUTERS = ['MyApps.dbrouters.DBRouter',]
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, FileResponse
 from .models import cvModel
+from django.db import connections
 import io
 from fpdf import FPDF
 # Create your views here.
@@ -45,7 +46,7 @@ def viewCVs(request):
 def deleteCV(request, cv_id):
     delCV = cvModel.objects.get(pk=cv_id)
     delCV.delete()
-    return HttpResponseRedirect('../')
+    return HttpResponseRedirect('../../')
 
 def printCV(request, cv_id):
     cv = cvModel.objects.get(pk=cv_id)
